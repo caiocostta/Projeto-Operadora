@@ -11,6 +11,6 @@ namespace Operadoras.API.Models
 
         public string NomeOperadora { get; set; }
 
-        public long NumTelefone { get; set; }
+        public string NumTelefone { get; set; }
     }
 }

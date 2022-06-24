@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 using Operadoras.API.Models;
+using Operadoras.API.Data;
 
 namespace Operadoras.API.Controllers
 {
@@ -14,33 +15,27 @@ namespace Operadoras.API.Controllers
     public class OperadorasController : ControllerBase
     {
 
-        public IEnumerable<Operadora> _operadora = new Operadora[]{
-            new Operadora(){
-                OperadoraId = 1,
-                NomeOperadora = "America Net",
-                NumTelefone = 1135001000
-            },
-            new Operadora(){
-                OperadoraId = 2,
-                NomeOperadora = "Algar Telecom",
-                NumTelefone = 08009421212
-            }
-        };
+        
 
-        public OperadorasController()
+        public DataContext _context { get; }
+
+        public OperadorasController(DataContext context)
         {
+            this._context = context;
         }
 
         [HttpGet]
         public IEnumerable<Operadora> Get()
         {
-            return _operadora;
+            return _context.Operadoras;
         }
 
         [HttpGet ("{id}")]
-        public IEnumerable<Operadora> Get(int id)
+        public Operadora Get(int id)
         {
-            return _operadora.Where(operadora => operadora.OperadoraId == id);
+            return _context.Operadoras.FirstOrDefault(
+                operadora => operadora.OperadoraId == id
+                );
         }
 
         [HttpPost]
