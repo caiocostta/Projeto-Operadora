@@ -33,6 +33,7 @@ namespace Operadoras.API
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Operadoras.API", Version = "v1" });
@@ -54,6 +55,8 @@ namespace Operadoras.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(access => access.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {
