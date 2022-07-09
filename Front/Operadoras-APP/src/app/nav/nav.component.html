@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a class="navbar-brand"><img class="img-fluid" src="https://br.claranet.com/sites/all/assets/br/brnl-logo.svg"/></a>
+    <button class="navbar-toggler" (click)="isCollapsed = !isCollapsed" type="button">
+      <i class="bi bi-search"></i>
+    </button>
+    <div class="collapse navbar-collapse" [collapse]="isCollapsed" [isAnimated]="true" id="navbarNav">
+      <ul class="navbar-nav">
+        <div class="d-flex align-items-center" role="search">
+          <label for="search">Filtrar: </label>
+          <input id="search" class="form-control m-2" type="search" placeholder="Procurar" (keyup)="filterLink()" [(ngModel)]="filter" aria-label="Procurar">
+        </div>
+      </ul>
+    </div>
+  </div>
+</nav>

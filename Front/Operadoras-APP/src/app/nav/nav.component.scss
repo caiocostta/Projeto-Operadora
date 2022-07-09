@@ -1,0 +1,20 @@
+.navbar-brand{
+  width: 200px;
+  height: 50px;
+}
+.navbar-collapse{
+  flex-grow: 0;
+}
+.nav-link{
+  color: #000;
+}
+.navbar-toggler{
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #FFF;
+}
+
+label{
+  font-weight: bold;
+  color: #dc3545;
+}

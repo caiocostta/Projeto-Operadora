@@ -27,6 +27,9 @@ namespace Operadoras.API.Data.Migrations
                     b.Property<string>("NumTelefone")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ObsOperadora")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("OperadoraId");
 
                     b.ToTable("Operadoras");

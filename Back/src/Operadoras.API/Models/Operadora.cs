@@ -12,5 +12,7 @@ namespace Operadoras.API.Models
         public string NomeOperadora { get; set; }
 
         public string NumTelefone { get; set; }
+
+        public string ObsOperadora { get; set; }
     }
 }
