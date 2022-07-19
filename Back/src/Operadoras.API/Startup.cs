@@ -11,8 +11,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using Operadoras.API.Data;
 using Microsoft.EntityFrameworkCore;
+
+using Operadoras.Persistence;
+using Operadoras.Persistence.Contexto;
+using Operadoras.Application.Contratos;
+using Operadoras.Persistence.Contratos;
+using Operadoras.Application;
 
 namespace Operadoras.API
 {
@@ -29,10 +34,18 @@ namespace Operadoras.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<DataContext>(
+            services.AddDbContext<OperadorasContext>(
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
-            services.AddControllers();
+            services.AddControllers()
+                    .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = 
+                        Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
+
+            services.AddScoped<IOperadorasService,  OperadoraService>();
+            services.AddScoped<IOperadoraPersist, OperadoraPersist>();
+            services.AddScoped<IGeralPersist, GeralPersist>();
+
             services.AddCors();
             services.AddSwaggerGen(c =>
             {

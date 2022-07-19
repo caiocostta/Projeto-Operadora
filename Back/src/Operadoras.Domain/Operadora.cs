@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Operadoras.API.Models
+namespace Operadoras.Domain
 {
     public class Operadora
     {
-        public int OperadoraId { get; set; }
+        public int Id { get; set; }
 
         public string NomeOperadora { get; set; }
 
-        public string NumTelefone { get; set; }
+        public IEnumerable<Telefone> NumTelefones { get; set; }
 
         public string ObsOperadora { get; set; }
     }
